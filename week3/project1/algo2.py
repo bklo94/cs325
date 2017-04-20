@@ -20,23 +20,22 @@ def max_sum_subarray(arr):
     current_sum = 0
     sums_dict = {}
 
-    for idx_out, val_out in enumerate(arr):
-        for idx_in, val_in in enumerate(arr):
-            if idx_in >= idx_out:
-                if idx_out == idx_in:
-                    sums_dict[(idx_out, idx_in)] = val_in
-                    current_sum += val_in
-                else:
-                    current_sum = sums_dict[(idx_out, (idx_in - 1))] + val_in
-                    sums_dict[(idx_out, idx_in)] = current_sum
+    for i in range(len(arr)):
+        for j in range(i, len(arr)):
+            if i == j:
+                sums_dict[(i, j)] = arr[i]
+                current_sum += arr[i]
+            else:
+                current_sum = sums_dict[(i, (j - 1))] + arr[j]
+                sums_dict[(i, j)] = current_sum
 
-                if current_sum > max_sum:
-                    max_sum = current_sum
-                    max_subarray = arr[idx_out:(idx_in+1)]
+            if current_sum > max_sum:
+                max_sum = current_sum
+                max_subarray = arr[i:(j+1)]
 
-                current_sum = 0
+            current_sum = 0
 
-    return (max_subarray, max_sum)
+    return max_subarray, max_sum
 
 
 def process_input():
