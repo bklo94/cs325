@@ -48,7 +48,7 @@ def process_input():
 
     inputfile = open('MSS_Problems.txt')
     outputfile = open('MSS_Results.txt', 'a')
-
+    outputfile.write('ALGORITHM 2 RESULTS \n')
     for line in inputfile:
         input_array = map(int, line.strip().split(' '))
         outputs = max_sum_subarray(input_array)
@@ -59,5 +59,3 @@ def process_input():
 
     inputfile.close()
     outputfile.close()
-
-process_input()
